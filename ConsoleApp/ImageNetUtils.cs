@@ -222,7 +222,7 @@ namespace ConsoleApp
         }
     }
 
-    public static class Backend
+    public class Backend
     {
         public static string ImageDataFormat()
         {
