@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FCNImageSegmentation", "FCNImageSegmentation.pyproj", "{673157A2-25CB-4BED-A52F-5E117BABD12C}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FCNImageSegmentation", "FCNImageSegmentation\FCNImageSegmentation.pyproj", "{673157A2-25CB-4BED-A52F-5E117BABD12C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "..\ConsoleApp\ConsoleApp.csproj", "{5F03577B-FDCE-4501-AD98-F318D5EC508F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{5F03577B-FDCE-4501-AD98-F318D5EC508F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
