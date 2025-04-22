@@ -49,7 +49,7 @@ namespace ConsoleApp
             Tensor imgInput;
             if (inputTensor == null)
             {
-                imgInput = K.Input(shape: inputShapeResolved);
+                imgInput = KerasApi.keras.layers.Input(shape: inputShapeResolved);
             }
             else
             {
@@ -124,11 +124,11 @@ namespace ConsoleApp
                 string weightsPath = includeTop
                     ? FileUtils.GetFile("vgg19_weights_tf_dim_ordering_tf_kernels.h5", WEIGHTS_PATH, cacheSubdir: "models", fileHash: "cbe5617147190e668d6c5d5026f83318")
                     : FileUtils.GetFile("vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5", WEIGHTS_PATH_NO_TOP, cacheSubdir: "models", fileHash: "253f8cb515780f3b799900260a226db6");
-                model.LoadWeights(weightsPath);
+                model.load_weights(weightsPath);
             }
             else if (weights != null)
             {
-                model.LoadWeights(weights);
+                model.load_weights(weights);
             }
 
             return model;

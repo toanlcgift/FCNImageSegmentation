@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tensorflow;
+using Tensorflow.Keras;
 
 namespace ConsoleApp
 {
@@ -192,6 +194,31 @@ namespace ConsoleApp
             }
 
             return inputShape;
+        }
+
+        public static void ValidateActivation(string classifierActivation, string weights)
+        {
+            // Validates that the classifierActivation is compatible with the weights.  
+
+            if (weights == null)
+            {
+                return;
+            }
+
+            var activation = KerasApi.keras.activations.GetActivationFromName(classifierActivation);
+            var allowedActivations = new HashSet<object>
+       {
+           KerasApi.keras.activations.GetActivationFromName("softmax"),
+           KerasApi.keras.activations.GetActivationFromName(null)
+       };
+
+            if (!allowedActivations.Contains(activation))
+            {
+                throw new ArgumentException(
+                    $"Only `null` and `softmax` activations are allowed for the `classifierActivation` argument when using " +
+                    $"pretrained weights, with `includeTop=true`; Received: classifierActivation={classifierActivation}"
+                );
+            }
         }
     }
 
