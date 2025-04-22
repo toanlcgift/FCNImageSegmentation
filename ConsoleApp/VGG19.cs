@@ -41,7 +41,7 @@ namespace ConsoleApp
                 inputShape,
                 defaultSize: 224,
                 minSize: 32,
-                dataFormat: K.ImageDataFormat(),
+                dataFormat: "channels_last",
                 requireFlatten: includeTop,
                 weights: weights
             );
