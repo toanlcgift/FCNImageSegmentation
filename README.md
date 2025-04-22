@@ -82,8 +82,10 @@ The script provides visualization for:
 Special thanks to:
 - [Suvaditya Mukherjee](https://twitter.com/halcyonrayes) for initial implementation.
 - [Google Developer Experts](https://developers.google.com/community/experts) for support.
+- github copilot for this readme.
 
 ## References
 - [Fully Convolutional Networks for Semantic Segmentation](https://arxiv.org/abs/1411.4038)
 - [Hugging Face Image Segmentation Models](https://huggingface.co/models?pipeline_tag=image-segmentation)
 - [PyImageSearch Blog on Semantic Segmentation](https://pyimagesearch.com/2018/09/03/semantic-segmentation-with-opencv-and-deep-learning/)
+
