@@ -1,5 +1,7 @@
 # FCNImageSegmentation
 
+C# implementation
+
 Fully-Convolutional Network (FCN) implementation for image segmentation tasks using TensorFlow and Keras. This repository demonstrates the application of FCNs on the Oxford-IIIT Pets dataset for semantic segmentation.
 
 ## Introduction
