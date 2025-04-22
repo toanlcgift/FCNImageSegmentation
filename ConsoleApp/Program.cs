@@ -56,8 +56,8 @@ static Model BuildFCN32SModel()
     var inputLayer = keras.Input(shape: (INPUT_HEIGHT, INPUT_WIDTH, 3));
 
     // Define VGG-19 backbone and extract outputs  
-    var vggModel = keras.applications.VGG19(include_top: true, weights: "imagenet");
-    var fcnBackbone = keras.Model(vggModel.Input, new[]
+    var vggModel = ConsoleApp.VGG19.BuildVGG19(includeTop: true, weights: "imagenet");
+    var fcnBackbone = keras.Model(vggModel.input, new[]
     {
                vggModel.GetLayer("block3_pool").Output,
                vggModel.GetLayer("block4_pool").Output,
