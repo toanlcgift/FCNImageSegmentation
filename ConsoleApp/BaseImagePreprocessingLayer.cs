@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tensorflow;
 using Tensorflow.Keras.Saving;
 using Tensorflow.NumPy;
 
@@ -60,15 +61,15 @@ namespace ConsoleApp
             return null;
         }
 
-        public abstract object TransformImages(object images, object transformation, bool training = true);
+        public abstract Tensor TransformImages(Tensor images, object transformation, bool training = true);
 
-        public abstract object TransformLabels(object labels, object transformation, bool training = true);
+        public abstract Tensor TransformLabels(object labels, object transformation, bool training = true);
 
-        public abstract object TransformBoundingBoxes(object boundingBoxes, object transformation, bool training = true);
+        public abstract Tensor TransformBoundingBoxes(object boundingBoxes, object transformation, bool training = true);
 
-        public abstract object TransformSegmentationMasks(object segmentationMasks, object transformation, bool training = true);
+        public abstract Tensor TransformSegmentationMasks(object segmentationMasks, object transformation, bool training = true);
 
-        public object TransformSingleImage(object image, object transformation, bool training = true)
+        public Tensor TransformSingleImage(Tensor image, object transformation, bool training = true)
         {
             
             var images = Backend.Numpy.ExpandDims(image, axis: 0);
@@ -76,21 +77,21 @@ namespace ConsoleApp
             return Backend.Numpy.Squeeze(outputs, axis: 0);
         }
 
-        public object TransformSingleLabel(object label, object transformation, bool training = true)
+        public Tensor TransformSingleLabel(object label, object transformation, bool training = true)
         {
             var labels = Backend.Numpy.ExpandDims(label, axis: 0);
             var outputs = TransformLabels(labels, transformation, training);
             return Backend.Numpy.Squeeze(outputs, axis: 0);
         }
 
-        public object TransformSingleBoundingBox(object boundingBox, object transformation, bool training = true)
+        public Tensor TransformSingleBoundingBox(object boundingBox, object transformation, bool training = true)
         {
             var boundingBoxes = FormatSingleInputBoundingBox(boundingBox);
             var outputs = TransformBoundingBoxes(boundingBoxes, transformation, training);
             return FormatSingleOutputBoundingBox(outputs);
         }
 
-        public object TransformSingleSegmentationMask(object segmentationMask, object transformation, bool training = true)
+        public Tensor TransformSingleSegmentationMask(object segmentationMask, object transformation, bool training = true)
         {
             var segmentationMasks = Backend.Numpy.ExpandDims(segmentationMask, axis: 0);
             var outputs = TransformSegmentationMasks(segmentationMasks, transformation, training);
