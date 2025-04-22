@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tensorflow;
+using Tensorflow.Keras;
 using Tensorflow.Keras.Engine;
 using Tensorflow.Keras.Layers;
 
@@ -55,54 +57,61 @@ namespace ConsoleApp
             }
 
             // Block 1
-            var x = new Conv2D64, (3, 3), activation: "relu", padding: "same", name: "block1_conv1").Apply(imgInput);
-            x = new Conv2D(64, (3, 3), activation: "relu", padding: "same", name: "block1_conv2").Apply(x);
-            x = new MaxPooling2D((2, 2), strides: (2, 2), name: "block1_pool").Apply(x);
+            var x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs()
+            {
+                Filters = 64,
+                KernelSize = new Shape(3, 3),
+                Activation = KerasApi.keras.activations.Relu,
+                Padding = "same",
+                Name = "block1_conv1"
+            }).Apply(imgInput);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 64, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block1_conv2" }).Apply(x);
+            x = new MaxPooling2D(new Tensorflow.Keras.ArgsDefinition.MaxPooling2DArgs() { PoolSize = (2, 2), Strides = (2, 2), Name = "block1_pool" }).Apply(x);
 
             // Block 2
-            x = new Conv2D(128, (3, 3), activation: "relu", padding: "same", name: "block2_conv1").Apply(x);
-            x = new Conv2D(128, (3, 3), activation: "relu", padding: "same", name: "block2_conv2").Apply(x);
-            x = new MaxPooling2D((2, 2), strides: (2, 2), name: "block2_pool").Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 128, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block2_conv1" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 128, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block2_conv2" }).Apply(x);
+            x = new MaxPooling2D(new Tensorflow.Keras.ArgsDefinition.MaxPooling2DArgs() { PoolSize = (2, 2), Strides = (2, 2), Name = "block2_pool" }).Apply(x);
 
             // Block 3
-            x = new Conv2D(256, (3, 3), activation: "relu", padding: "same", name: "block3_conv1").Apply(x);
-            x = new Conv2D(256, (3, 3), activation: "relu", padding: "same", name: "block3_conv2").Apply(x);
-            x = new Conv2D(256, (3, 3), activation: "relu", padding: "same", name: "block3_conv3").Apply(x);
-            x = new Conv2D(256, (3, 3), activation: "relu", padding: "same", name: "block3_conv4").Apply(x);
-            x = new MaxPooling2D((2, 2), strides: (2, 2), name: "block3_pool").Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 256, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block3_conv1" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 256, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block3_conv2" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 256, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block3_conv3" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 256, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block3_conv4" }).Apply(x);
+            x = new MaxPooling2D(new Tensorflow.Keras.ArgsDefinition.MaxPooling2DArgs() { PoolSize = (2, 2), Strides = (2, 2), Name = "block3_pool" }).Apply(x);
 
             // Block 4
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block4_conv1").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block4_conv2").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block4_conv3").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block4_conv4").Apply(x);
-            x = new MaxPooling2D((2, 2), strides: (2, 2), name: "block4_pool").Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block4_conv1" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block4_conv2" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block4_conv3" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block4_conv4" }).Apply(x);
+            x = new MaxPooling2D(new Tensorflow.Keras.ArgsDefinition.MaxPooling2DArgs() { PoolSize = (2, 2), Strides = (2, 2), Name = "block4_pool" }).Apply(x);
 
             // Block 5
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block5_conv1").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block5_conv2").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block5_conv3").Apply(x);
-            x = new Conv2D(512, (3, 3), activation: "relu", padding: "same", name: "block5_conv4").Apply(x);
-            x = new MaxPooling2D((2, 2), strides: (2, 2), name: "block5_pool").Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block5_conv1" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block5_conv2" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block5_conv3" }).Apply(x);
+            x = new Conv2D(new Tensorflow.Keras.ArgsDefinition.Conv2DArgs() { Filters = 512, KernelSize = new Shape(3, 3), Activation = KerasApi.keras.activations.Relu, Padding = "same", Name = "block5_conv4" }).Apply(x);
+            x = new MaxPooling2D(new Tensorflow.Keras.ArgsDefinition.MaxPooling2DArgs() { PoolSize = (2, 2), Strides = (2, 2), Name = "block5_pool" }).Apply(x);
 
             if (includeTop)
             {
                 // Classification block
-                x = new Flatten(name: "flatten").Apply(x);
-                x = new Dense(4096, activation: "relu", name: "fc1").Apply(x);
-                x = new Dense(4096, activation: "relu", name: "fc2").Apply(x);
+                x = new Flatten(new Tensorflow.Keras.ArgsDefinition.FlattenArgs() { Name = "flatten" }).Apply(x);
+                x = new Dense(new Tensorflow.Keras.ArgsDefinition.DenseArgs() { Units = 4096, Activation = KerasApi.keras.activations.Relu, Name = "fc1" }).Apply(x);
+                x = new Dense(new Tensorflow.Keras.ArgsDefinition.DenseArgs() { Units = 4096, Activation = KerasApi.keras.activations.Relu, Name = "fc2" }).Apply(x);
                 ImageNetUtils.ValidateActivation(classifierActivation, weights);
-                x = new Dense(classes, activation: classifierActivation, name: "predictions").Apply(x);
+                x = new Dense(new Tensorflow.Keras.ArgsDefinition.DenseArgs() { Units = classes, Activation = KerasApi.keras.activations.Softmax, Name = "predictions" }).Apply(x);
             }
             else
             {
                 if (pooling == "avg")
                 {
-                    x = new GlobalAveragePooling2D().Apply(x);
+                    x = new GlobalAveragePooling2D(new Tensorflow.Keras.ArgsDefinition.Pooling2DArgs()).Apply(x);
                 }
                 else if (pooling == "max")
                 {
-                    x = new GlobalMaxPooling2D().Apply(x);
+                    x = new GlobalMaxPooling2D(new Tensorflow.Keras.ArgsDefinition.Pooling2DArgs()).Apply(x);
                 }
             }
 
